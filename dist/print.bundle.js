@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{7:function(o,d,n){"use strict";n.r(d),console.log("loaded print js"),d.default={add:()=>{console.log("add")}}}}]);

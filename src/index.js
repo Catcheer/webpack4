@@ -1,6 +1,10 @@
 
+// import img from './done.svg'
+import './index.css'
+
 
 async function getComponent() {
+  console.log('getComponent')
   // let element = document.createElement('div');
   // var btn=document.createElement('button')
   // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -13,7 +17,23 @@ async function getComponent() {
   var element = document.createElement('div');
 
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('hello')
 
+  var btn = document.createElement('button')
+  btn.innerHTML = 'load print'
+  btn.onclick = function () {
+    
+
+    // var Img = new Image()
+    // Img.src=img
+    
+    element.appendChild(Img)
+
+    import(/* webpackChunkName:"print" */ './print.js').then(({ default: print }) => {
+      print.add()
+    })
+  }
+  element.appendChild(btn)
   return element;
 
 
@@ -23,3 +43,4 @@ async function getComponent() {
 getComponent().then(component => {
   document.body.appendChild(component);
 })
+console.log('index')
