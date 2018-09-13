@@ -1,6 +1,6 @@
 
 
-function getComponent() {
+async function getComponent() {
   // let element = document.createElement('div');
   // var btn=document.createElement('button')
   // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -9,13 +9,13 @@ function getComponent() {
   // btn.onclick=PrintMe
   // element.appendChild(btn)
 
-  return import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
-    var element = document.createElement('div');
+  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash')
+  var element = document.createElement('div');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-    return element;
-  }).catch(error => 'An error occurred while loading the component');
+  return element;
+
 
 }
 

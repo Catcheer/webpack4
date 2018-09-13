@@ -42,3 +42,22 @@
 
 异步加载的模块是要以文件形式加载哦，所以这时生成的文件名是以chunkname配置的，生成出的文件名就是tips.min.js。
 （require.ensure() API的第三个参数是给这个模块命名，否则 chunkFilename: "[name].min.js" 中的 [name] 是一个自动分配的、可读性很差的id，
+
+
+### Bundle Analysis 
+
+  方法一：webpack --profile --json > stats.json
+
+  方法二：webpack-bundle-analyzer
+
+  ```
+    npm install --save-dev webpack-bundle-analyzer
+
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+    module.exports = {
+      plugins: [
+        new BundleAnalyzerPlugin()
+      ]
+    }
+  ```
