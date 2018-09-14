@@ -1,46 +1,48 @@
 
-// import img from './done.svg'
-import './index.css'
+// import printMe from './print.js';
+// import _ from 'lodash'
+
+let printMe
 
 
-async function getComponent() {
-  console.log('getComponent')
-  // let element = document.createElement('div');
-  // var btn=document.createElement('button')
-  // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+import(
+  /* webpackPrefetch:true */
+  /* webpackChunkName:"print" */
+  './print').then(({ default: res }) => {
+    printMe = res
+  })
 
-  // btn.innerHTML = 'Click me and check the console!';
-  // btn.onclick=PrintMe
-  // element.appendChild(btn)
 
-  const { default: _ } = await import(/* webpackChunkName: "lodash" */ 'lodash')
+async function getLodash() {
+  let { default: _ } = await import(/* webpackChunkName:"lodash" */ 'lodash')
+  console.log('lodash loaded')
+  return _
+}
+
+
+
+
+function getComponent(_) {
+
   var element = document.createElement('div');
+  var btn = document.createElement('button');
 
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello')
-
-  var btn = document.createElement('button')
-  btn.innerHTML = 'load print'
+  btn.innerHTML = 'Click me and check the console!';
   btn.onclick = function () {
-    
 
-    // var Img = new Image()
-    // Img.src=img
-    
-    element.appendChild(Img)
-
-    import(/* webpackChunkName:"print" */ './print.js').then(({ default: print }) => {
-      print.add()
-    })
+    printMe()
   }
-  element.appendChild(btn)
-  return element;
 
+  element.appendChild(btn);
+  return element;
 
 }
 
-// document.body.appendChild(component());
-getComponent().then(component => {
-  document.body.appendChild(component);
-})
-console.log('index')
+
+  getLodash().then((_) => {
+    document.body.appendChild(getComponent(_));
+  })
+
+
+

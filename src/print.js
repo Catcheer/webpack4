@@ -1,9 +1,6 @@
-console.log('loaded print js')
+console.log('print')
 
-export default {
-    add: () => {
-        console.log('add')
-    }
 
+export default function printMe(){
+    console.log('caller printMe')
 }
-

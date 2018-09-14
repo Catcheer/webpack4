@@ -2,19 +2,19 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: {
-        index: './src/index.js',
+        app: './src/index.js',
+        // print:'./src/print.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
     },
-    module: {
-        rules: [
+    // module: {
+        // rules: [
             // {
             //     test: /\.(html)$/,
             //     use: {
@@ -33,28 +33,30 @@ module.exports = {
             //         }
             //     ]
             // },
-            {
-                test: /\.(css|scss|less)$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/i,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10240000
-                    }
-                }],
+            // {
+            //     test: /\.(css|scss|less)$/i,
+            //     use: ['style-loader', 'css-loader'],
+            // },
+            // {
+            //     test: /\.(png|jpg|gif|svg)$/i,
+            //     use: [{
+            //         loader: 'url-loader',
+            //         options: {
+            //             limit: 10240000
+            //         }
+            //     }],
 
-            }
+            // }
 
-        ]
-    },
+        // ]
+    // }
+    devtool: 'inline-source-map',
     plugins: [
         new CleanWebpackPlugin(['dist']),// 删除dist目录
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            title: 'Output Management'
+            title: 'Output Management',
+            // chunks:['app']
         }),
         // new BundleAnalyzerPlugin()
     ]
