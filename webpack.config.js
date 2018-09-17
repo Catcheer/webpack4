@@ -11,7 +11,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js'
+        chunkFilename: '[name].bundle.js',
+        publicPath:'/public/'
     },
     // module: {
         // rules: [
@@ -51,8 +52,12 @@ module.exports = {
         // ]
     // }
     devtool: 'inline-source-map',
+    devServer:{
+        contentBase: './dist',
+        // publicPath:'/public/'
+    },
     plugins: [
-        new CleanWebpackPlugin(['dist']),// 删除dist目录
+        // new CleanWebpackPlugin(['dist']),// 删除dist目录
         new HtmlWebpackPlugin({
             template: './src/index.html',
             title: 'Output Management',

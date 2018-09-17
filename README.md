@@ -67,4 +67,25 @@
   <img src='xx.png' />
   ```
   ### ejsLoader 
+
+  ### webpackPrefetch webpackPreload
+
+  import(/* webpackPrefetch: true */ "...")用于预取
+  <link rel =“prefetch”> 这个“资源提示”告诉浏览器这是将来某些导航可能需要的资源。
+
+浏览器通常在处于空闲状态时获取此资源。获取资源后，在HTTP缓存中准备好以满足将来的请求。多个预取提示排队并在空闲时获取。当预取到浏览器时离开空闲状态可以取消任何正在进行的提取（并将部分响应放入缓存，继续使用Content-Range标头）并停止处理预取队列。
+总结一下：空闲时取指
+
+<link rel =“preload”>这个“资源提示”告诉浏览器这是这个导航肯定需要的资源，但稍后会被发现。Chrome在加载3秒后未使用资源时甚至会打印警告。
+
+浏览器通常以中等优先级（不是布局阻塞）获取此资源。
+
+总结一下：就像早先发现的一样，取正常。
+
+### out.path  output.publicPath
+
+path 打包生成静态资源放到硬盘上的路径/目录
+
+publicPath 决定引用静态资源的最终路径，最终路径=publicPath+loader路径。publicPath主要用于：例如把打包生成的包放到站点根目录下的demo目录。若不设置publicPath（默认值为'/'）则xx.com/demo路径根本找不到html和其他资源。此case 设置publicPath为'demo'或者为绝对路径即可。
+
     

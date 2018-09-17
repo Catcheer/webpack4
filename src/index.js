@@ -4,7 +4,6 @@
 
 let printMe
 
-
 import(
   /* webpackPrefetch:true */
   /* webpackChunkName:"print" */
@@ -27,7 +26,7 @@ function getComponent(_) {
   var element = document.createElement('div');
   var btn = document.createElement('button');
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack','webpackDevServer'], ' ');
   btn.innerHTML = 'Click me and check the console!';
   btn.onclick = function () {
 
