@@ -54,7 +54,11 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer:{
         contentBase: './dist',
-        // publicPath:'/public/'
+        port:9000,
+        compress:true,
+
+        clientLogLevel:'none',
+        publicPath:'/public/'
     },
     plugins: [
         // new CleanWebpackPlugin(['dist']),// 删除dist目录

@@ -82,10 +82,26 @@
 
 总结一下：就像早先发现的一样，取正常。
 
-### out.path  output.publicPath
+### output.path  output.publicPath devServer.contentBase devServer.publicPath
 
-path 打包生成静态资源放到硬盘上的路径/目录
+output.path 打包生成静态资源放到硬盘上的路径/目录
 
-publicPath 决定引用静态资源的最终路径，最终路径=publicPath+loader路径。publicPath主要用于：例如把打包生成的包放到站点根目录下的demo目录。若不设置publicPath（默认值为'/'）则xx.com/demo路径根本找不到html和其他资源。此case 设置publicPath为'demo'或者为绝对路径即可。
+output.publicPath 决定引用静态资源的最终路径，最终路径=publicPath+loader路径。publicPath主要用于：例如把打包生成的包放到站点根目录下的demo目录。若不设置publicPath（默认值为'/'）则xx.com/demo路径根本找不到html和其他资源。此case 设置publicPath为'demo'或者为绝对路径即可。
 
+
+devServer.contentBase 告诉服务器从哪个目录中提供内容。只有在你想要提供静态文件时才需要。devServer.publicPath 将用于确定应该从哪里提供 bundle，并且此选项优先。
+
+默认情况下，将使用当前工作目录作为提供内容的目录，但是你可以修改为其他目录：
+
+```
+  module.exports = {
+  //...
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  }
+};
+
+```
+
+devServer.publicPath 假设此值设置为'/public/',则相当于 将打包后的文件（其实文件是在内存中的）放到服务器的（http://localhost:8080）public目录下。由此可以看出：devServer.publicPath与output.publicPath设置相同。
     
