@@ -2,17 +2,17 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
         app: './src/index.js',
-        // print:'./src/print.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
-        publicPath:'/public/'
+        // publicPath:'/public/'
     },
     // module: {
         // rules: [
@@ -55,10 +55,16 @@ module.exports = {
     devServer:{
         contentBase: './dist',
         port:9000,
+        hot:true,
         compress:true,
-
         clientLogLevel:'none',
-        publicPath:'/public/'
+        publicPath:'/public/',
+        noInfo: true,
+        historyApiFallback: {
+            rewrites: [
+                { from: /^\/a$/, to: '/public/index.html' }
+              ]
+        }
     },
     plugins: [
         // new CleanWebpackPlugin(['dist']),// 删除dist目录
@@ -67,6 +73,8 @@ module.exports = {
             title: 'Output Management',
             // chunks:['app']
         }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
         // new BundleAnalyzerPlugin()
     ]
 

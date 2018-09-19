@@ -1,14 +1,5 @@
 
-
-let printMe
-
-import(
-  /* webpackPrefetch:true */
-  /* webpackChunkName:"print" */
-  './print').then(({ default: res }) => {
-    printMe = res
-  })
-
+import PrintMe from './print.js'
 
 async function getLodash() {
   let { default: _ } = await import(/* webpackChunkName:"lodash" */ 'lodash')
@@ -24,11 +15,10 @@ function getComponent(_) {
   var element = document.createElement('div');
   var btn = document.createElement('button');
 
-  element.innerHTML = _.join(['Hello', 'webpack','webpackDevServer'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack', 'webpackDevServer'], ' ');
   btn.innerHTML = 'Click me and check the console!';
   btn.onclick = function () {
-
-    printMe()
+    PrintMe()
   }
 
   element.appendChild(btn);
@@ -37,9 +27,14 @@ function getComponent(_) {
 }
 
 
-  getLodash().then((_) => {
-    document.body.appendChild(getComponent(_));
+getLodash().then((_) => {
+  document.body.appendChild(getComponent(_));
+})
+
+if (module.hot) {
+  module.hot.accept('./print.js', function () {
+    console.log('Accepting the updated printMe module!');
+    PrintMe()
   })
-
-
+}
 

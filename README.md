@@ -103,5 +103,25 @@ devServer.contentBase 告诉服务器从哪个目录中提供内容。只有在�
 
 ```
 
-devServer.publicPath 假设此值设置为'/public/',则相当于 将打包后的文件（其实文件是在内存中的）放到服务器的（http://localhost:8080）public目录下。由此可以看出：devServer.publicPath与output.publicPath设置相同。
+devServer.publicPath 假设此值设置为'/public/',则相当于 将打包后的文件（其实文件是在内存中的）放到服务器的（'http://localhost:8080'）public目录下。由此可以看出：devServer.publicPath与output.publicPath设置相同。
     
+### historyApiFallback
+
+
+### HotModuleReplacementPlugin(HRM)
+
+在package.json配置 
+``` "start": "webpack-dev-server --hot"
+
+```
+不能正常启用HRM
+
+在devServer配置 
+```
+hot:true
+```
+
+可以正常启用HRM
+不知道为什么....
+
+
