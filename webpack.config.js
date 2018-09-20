@@ -14,8 +14,9 @@ module.exports = {
         chunkFilename: '[name].bundle.js',
         // publicPath:'/public/'
     },
-    // module: {
-        // rules: [
+    mode: "production",
+    module: {
+        rules: [
             // {
             //     test: /\.(html)$/,
             //     use: {
@@ -34,10 +35,10 @@ module.exports = {
             //         }
             //     ]
             // },
-            // {
-            //     test: /\.(css|scss|less)$/i,
-            //     use: ['style-loader', 'css-loader'],
-            // },
+            {
+                test: /\.(css|scss|less)$/i,
+                use: ['style-loader', 'css-loader',"sass-loader"],
+            },
             // {
             //     test: /\.(png|jpg|gif|svg)$/i,
             //     use: [{
@@ -49,14 +50,14 @@ module.exports = {
 
             // }
 
-        // ]
-    // }
-    devtool: 'inline-source-map',
+        ]
+    },
+    // devtool: 'inline-source-map',
     devServer:{
         contentBase: './dist',
         port:9000,
         hot:true,
-        compress:true,
+        // compress:true,
         clientLogLevel:'none',
         publicPath:'/public/',
         noInfo: true,
@@ -67,10 +68,10 @@ module.exports = {
         }
     },
     plugins: [
-        // new CleanWebpackPlugin(['dist']),// 删除dist目录
+        new CleanWebpackPlugin(['dist']),// 删除dist目录
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            title: 'Output Management',
+            title: 'Hot Module Replacement',
             // chunks:['app']
         }),
         new webpack.NamedModulesPlugin(),
