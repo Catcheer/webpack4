@@ -7,9 +7,9 @@ const merge = require('webpack-merge');
    devtool: 'inline-source-map',
    devServer: {
      contentBase: './dist',
-    //  hot:true
+     hot:true
    },
    plugins:[
-    //  new webpack.HotModuleReplacementPlugin()
+     new webpack.HotModuleReplacementPlugin()
    ]
  });

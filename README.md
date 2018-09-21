@@ -123,4 +123,13 @@ hot:true
 需手动配置webpack.HotModuleReplacementPlugin
 
 
+### mini-css-extract-plugin
+
+切记 此插件仅仅适用于生产模式，并且在loaders配置项里没有'style-loader'
+
+```
+This plugin should be used only on production builds without style-loader in the loaders chain
+```
+
+
 
