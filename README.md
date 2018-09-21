@@ -110,18 +110,17 @@ devServer.publicPath 假设此值设置为'/public/',则相当于 将打包后�
 
 ### HotModuleReplacementPlugin(HRM)
 
-在package.json配置 
+在package.json配置  会自动配置webpack.HotModuleReplacementPlugin
 ``` "start": "webpack-dev-server --hot"
 
 ```
-不能正常启用HRM
 
-在devServer配置 
+或在devServer配置 
 ```
 hot:true
-```
 
-可以正常启用HRM
-不知道为什么....
+```
+需手动配置webpack.HotModuleReplacementPlugin
+
 
 
